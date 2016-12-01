@@ -4,6 +4,7 @@ package edu.umich.mentormatcher;
 // and setup their expertise/availabilities.
 // The mentor view has two buttons: "Update my Calendar" and "Update my Profile"
 // The former goes to the calendar screen.  The latter goes to the update profile screen
+// Kevin
 
 import android.app.Activity;
 import android.os.Bundle;

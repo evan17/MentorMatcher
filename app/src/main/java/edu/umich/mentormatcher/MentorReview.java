@@ -2,6 +2,7 @@ package edu.umich.mentormatcher;
 
 // This is the Mentor profile list viewed by the mentee.  The mentee chooses which service to use.
 // The mentee can then go to the mentor booking page
+// Kevin
 
 import android.app.Activity;
 import android.os.Bundle;

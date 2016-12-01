@@ -2,6 +2,7 @@ package edu.umich.mentormatcher;
 
 // This page is accessed after searching from the intro page and returns a list of mentors based on search criteria.
 // Clicking a mentor takes the user to the mentor profile page
+// Panpan
 
 import android.app.Activity;
 import android.os.Bundle;
