@@ -15,6 +15,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".MentorListReturn" />
+        <activity android:name=".MentorReview" />
+        <activity android:name=".MentorBooking" />
+        <activity android:name=".ProfileManagement" />
+        <activity android:name=".MentorAvailability" />
+        <activity android:name=".MentorCalendarUpdate"></activity>
     </application>
 
 </manifest>
