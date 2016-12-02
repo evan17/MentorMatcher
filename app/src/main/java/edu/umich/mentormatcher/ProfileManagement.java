@@ -7,6 +7,7 @@ package edu.umich.mentormatcher;
 // Kevin
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -64,7 +65,8 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.buttonBack:
                 // Go to prior screen - code forthcoming
-
+                Intent intent = new Intent(this, UserActivityManagementScreen.class);
+                startActivity(intent);
                 break;
             case R.id.buttonUpdateProfile:
                 // Go to update proile screen - code forthcoming

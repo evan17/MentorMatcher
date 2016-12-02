@@ -6,6 +6,7 @@ package edu.umich.mentormatcher;
 
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +64,8 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
                 break;
             case R.id.buttonProfile:
                 // Go to proile screen - code forthcoming
-
+                Intent intent = new Intent(this, ProfileManagement.class);
+                startActivity(intent);
                 break;
             case R.id.buttonRatings:
                 // Go to ratings screen - code forthcoming
