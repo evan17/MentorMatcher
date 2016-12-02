@@ -1,6 +1,6 @@
 package edu.umich.mentormatcher;
 
-// This is the Mentor profile list viewed by the mentee.  The mentee chooses which service to use.
+// This is the Mentor profile viewed by the mentee.  The mentee chooses which service to use.
 // The mentee can then go to the mentor booking page
 // Kevin
 

@@ -8,12 +8,75 @@ package edu.umich.mentormatcher;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
-public class ProfileManagement extends Activity {
+import org.w3c.dom.Text;
+
+import static edu.umich.mentormatcher.R.id.buttonRatings;
+
+public class ProfileManagement extends Activity implements View.OnClickListener{
+
+    private Button buttonBack;
+    private Button buttonUpdateProfile;
+    private Button buttonUpdateAvailability;
+    private TextView textName;
+    private TextView textPosition;
+    private TextView textServices;
+    private TextView textAbout;
+    private TextView textReviews;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_management);
+
+        //  Link Java object to widgets
+        buttonBack = (Button) findViewById(R.id.buttonBack);
+        buttonUpdateProfile = (Button) findViewById(R.id.buttonUpdateProfile);
+        buttonUpdateAvailability = (Button) findViewById(R.id.buttonUpdateAvailability);
+        textName = (TextView) findViewById(R.id.textName);
+        textPosition = (TextView) findViewById(R.id.textPosition);
+        textServices = (TextView) findViewById(R.id.textServices);
+        textAbout = (TextView) findViewById(R.id.textAbout);
+        textReviews = (TextView) findViewById(R.id.textReviews);
+
+        // Set listeners
+        buttonBack.setOnClickListener(this);
+        buttonUpdateProfile.setOnClickListener(this);
+        buttonUpdateAvailability.setOnClickListener(this);
+
+        // Update Text from Database - placeholder data until databse created / setup
+        // Update text
+        textName.setText("Panpan in the house");
+        textPosition.setText("Amazon Ruler");
+        textServices.setText("E/'erthang");
+        textAbout.setText("I now like tea mor than coffee / java");
+        textReviews.setText("Stellar");
+
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.buttonBack:
+                // Go to prior screen - code forthcoming
+
+                break;
+            case R.id.buttonUpdateProfile:
+                // Go to update proile screen - code forthcoming
+
+                break;
+            case R.id.buttonUpdateAvailability:
+                // Go to update availability (calendar) screen - code forthcoming
+
+                break;
+
+        }
+
+
     }
 }
