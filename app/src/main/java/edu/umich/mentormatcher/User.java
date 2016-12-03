@@ -1,6 +1,11 @@
 package edu.umich.mentormatcher;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Created by Zhihao on 11/28/2016.
@@ -8,11 +13,11 @@ import java.util.List;
 
 // Use FakeUser class for debugging
 public class User {
-    // Basic & mentee
+    private static final String DB_NAME_USER = "users";
     protected String email;
     protected String password;
     protected String name;
-    protected int uid;
+    protected long uid;
     protected String careerAspiration;
 
     private boolean isMentor;
@@ -21,31 +26,40 @@ public class User {
         // Disable public use of default constructor
     }
 
-    private User(String email, String password, String name, String careerAspiration) {
-        // TODO: Get UID
-        // TODO: Assign Value
+    public User(String email, String password, String name, String careerAspiration) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.careerAspiration = careerAspiration;
+
+        this.uid = generateNewUid();
+        this.isMentor = false;
     }
 
-    private int generateNewUid() {
-        return 0;
+    private long generateNewUid() {
+        if(uid != 0)
+            return uid;
+
+        Date date = new Date();
+        Random rand = new Random();
+        return date.getTime() * 100 + rand.nextInt(99);
     }
 
-    public static User userRegister(String email, String password, String name, String careerAspiration) {
-        // String check
-        return new User(email, password, name, careerAspiration);
+    public static DatabaseReference getUserDBRefFromFirebase(long uid) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference userRef = database.getReference(DB_NAME_USER).child(Long.toString(uid));
+
+        return userRef;
     }
 
-    public static Mentor fillMentorInfo(int uid, String title, String aboutMe, String service, String reward) {
-        // no update when int == 0 or string == null
-        return null;
-    }
+    protected boolean saveToFirebase() {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference commentRef = database.getReference(DB_NAME_USER);
+        if(commentRef == null)
+            return false;
 
-    public static User userLogin(String email, String password) {
-        return null;
-    }
-
-    public static User getUserById(int uid) {
-        return null;
+        commentRef.child(Long.toString(uid)).setValue(this);
+        return true;
     }
 }
 
