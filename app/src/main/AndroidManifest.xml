@@ -21,7 +21,8 @@
         <activity android:name=".ProfileManagement" />
         <activity android:name=".MentorCalendarUpdate" />
         <activity android:name=".UserActivityManagementScreen" />
-        <activity android:name=".Login"></activity>
+        <activity android:name=".Login" />
+        <activity android:name=".CareerFunctions"></activity>
     </application>
 
 </manifest>
