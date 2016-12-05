@@ -9,7 +9,7 @@ import android.widget.EditText;
 
 public class Login extends Activity implements View.OnClickListener {
 
-    //Declaring objects?
+    //Declaring objects
 
     private EditText editTextuser;
     private EditText editTextpassword;
