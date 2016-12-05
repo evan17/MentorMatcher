@@ -20,7 +20,8 @@
         <activity android:name=".MentorBooking" />
         <activity android:name=".ProfileManagement" />
         <activity android:name=".MentorCalendarUpdate" />
-        <activity android:name=".UserActivityManagementScreen"></activity>
+        <activity android:name=".UserActivityManagementScreen" />
+        <activity android:name=".Registration"></activity>
     </application>
 
 </manifest>
