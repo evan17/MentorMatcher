@@ -36,6 +36,13 @@
                 android:id="@+id/buttonBack"
                 android:layout_weight="0.04" />
 
+            <Button
+                android:text="View My Profile"
+                android:layout_width="231dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/buttonProfile"
+                android:layout_weight="0.04" />
+
         </LinearLayout>
 
         <LinearLayout
@@ -46,31 +53,27 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="91dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.02"></LinearLayout>
-
-            <LinearLayout
-                android:orientation="vertical"
                 android:layout_width="143dp"
                 android:layout_height="match_parent"
                 android:layout_weight="0.32">
 
                 <TextView
-                    android:text="TextView"
+                    android:text="Name"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textName"
                     android:layout_weight="1"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textAlignment="center" />
 
                 <TextView
-                    android:text="TextView"
+                    android:text="Position"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textPosition"
                     android:layout_weight="1"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:textAlignment="center" />
             </LinearLayout>
 
         </LinearLayout>
@@ -83,17 +86,16 @@
 
             <TextView
                 android:text="My Upcoming Appointments"
-                android:layout_width="wrap_content"
+                android:layout_width="216dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView11"
-                android:layout_weight="0.22"
                 android:textSize="18sp" />
 
             <Button
                 android:text="# Apptmts"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button8"
+                android:id="@+id/buttonAppointments"
                 android:layout_weight="1" />
         </LinearLayout>
 
@@ -108,29 +110,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/textView12"
-                android:layout_weight="2.67"
+                android:layout_weight="1.98"
                 android:textSize="18sp" />
 
             <Button
-                android:text="Rating"
+                android:text="Ratings"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/button9"
+                android:id="@+id/buttonRatings"
                 android:layout_weight="0.86" />
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="52dp"
-            android:layout_weight="0.11">
-
-            <Button
-                android:text="View My Profile"
-                android:layout_width="match_parent"
-                android:layout_height="63dp"
-                android:id="@+id/buttonProfile" />
         </LinearLayout>
 
     </LinearLayout>
