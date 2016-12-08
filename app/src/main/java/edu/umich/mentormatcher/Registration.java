@@ -75,7 +75,7 @@ public class Registration extends Activity implements View.OnClickListener {
 
     public void onClick (View v) {
         //Event handler
-        Intent registerIntent = new Intent(this, RegistationActivity);
+        Intent registerIntent = new Intent(this, Registration);
         setContentView(R.layout.activity_main);
         this.startActivity(registerIntent);
 
