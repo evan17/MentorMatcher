@@ -6,6 +6,13 @@ package edu.umich.mentormatcher;
 // The former goes to the calendar screen.  The latter goes to the update profile screen (to be built by Chidi and Lizzie)
 // Kevin
 
+// To Do:
+// Connect Firebase and import classes throughout
+// Remove text placeolders with firebase calls
+// Decide if a menu should be included throughout (and if so, add)
+// Finish navigation
+// Add in firebase core stuff (done on other screens)
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
