@@ -8,12 +8,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.Button;
+import android.widget.SimpleAdapter;
 import android.widget.Spinner;
 import java.util.List;
 import android.widget.AdapterView.OnItemSelectedListener;
 import java.util.ArrayList;
 
-public class Registration extends Activity implements view.OnClickListener {
+public class Registration extends Activity implements View.OnClickListener {
 
 //declare objects
 
@@ -74,7 +75,7 @@ public class Registration extends Activity implements view.OnClickListener {
 
     public void onClick (View v) {
         //Event handler
-        Intent registerIntent = new Intent(this, RegistationActivity);
+        Intent registerIntent = new Intent(this, Registration);
         setContentView(R.layout.activity_main);
         this.startActivity(registerIntent);
 
