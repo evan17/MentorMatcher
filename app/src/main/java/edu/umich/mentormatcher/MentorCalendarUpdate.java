@@ -5,6 +5,11 @@ package edu.umich.mentormatcher;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MentorCalendarUpdate extends Activity {
 

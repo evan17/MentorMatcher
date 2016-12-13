@@ -22,7 +22,9 @@
         <activity android:name=".MentorCalendarUpdate" />
         <activity android:name=".UserActivityManagementScreen" />
         <activity android:name=".Registration" />
-        <activity android:name=".MentorRegistration"></activity>
+        <activity android:name=".MentorRegistration" />
+        <activity android:name=".ConfirmAppointActivity" />
+        <activity android:name=".MentorCommentActivity"></activity>
     </application>
 
 </manifest>
