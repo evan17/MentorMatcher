@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".CareerFunctions">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -22,9 +22,6 @@
         <activity android:name=".MentorCalendarUpdate" />
         <activity android:name=".UserActivityManagementScreen" />
         <activity android:name=".Registration" />
-        <activity android:name=".MentorRegistration" />
-        <activity android:name=".ConfirmAppointActivity" />
-        <activity android:name=".MentorCommentActivity"></activity>
     </application>
 
 </manifest>

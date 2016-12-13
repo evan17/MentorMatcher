@@ -4,13 +4,25 @@ package edu.umich.mentormatcher;
 // It has a button to navigate to the profile management screen
 // Kevin
 
+// To Do:
+// Connect Firebase and import classes throughout
+// Remove text placeolders with firebase calls
+// Decide if a menu should be included throughout (and if so, add)
+// Finish navigation
+// Figure out how to get the aggregated rating
+
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class UserActivityManagementScreen extends Activity implements View.OnClickListener{
 
@@ -21,6 +33,8 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
     private TextView textName;
     private TextView textPosition;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
 
     @Override
@@ -52,7 +66,38 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
         buttonAppointments.setText("5");
 
 
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(UserActivityManagementScreen.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(UserActivityManagementScreen.this, "Nobody Logged In", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(UserActivityManagementScreen.this, MainActivity.class);
+                    startActivity(intent);
+                }
+            }
+        };
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+
 
     @Override
     public void onClick(View v) {
