@@ -22,6 +22,11 @@ public class User {
 
     public boolean isMentor;
 
+    // Mentor related
+    public String title;
+    public String aboutMe;
+    public String reward;
+
     protected User() {
         // Disable public use of default constructor
     }
