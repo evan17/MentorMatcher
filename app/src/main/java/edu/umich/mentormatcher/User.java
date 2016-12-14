@@ -14,13 +14,13 @@ import java.util.Random;
 // Use FakeUser class for debugging
 public class User {
     private static final String DB_NAME_USER = "users";
-    protected String email;
-    protected String password;
-    protected String name;
-    protected long uid;
-    protected String careerAspiration;
+    public String email;
+    public String password;
+    public String name;
+    public long uid;
+    public String careerAspiration;
 
-    private boolean isMentor;
+    public boolean isMentor;
 
     protected User() {
         // Disable public use of default constructor
@@ -42,7 +42,7 @@ public class User {
 
         Date date = new Date();
         Random rand = new Random();
-        return date.getTime() * 100 + rand.nextInt(99);
+        return date.getTime() + rand.nextInt(99);
     }
 
     public static DatabaseReference getUserDBRefFromFirebase(long uid) {

@@ -12,16 +12,16 @@ import java.util.Random;
 
 public class Comment {
     private static final String DB_NAME_COMMENT = "comments";
-    private String commentId;
-    private int receiverUid;
-    private String text;
-    private int rating;
-    private boolean isMentorComment;
-    private Date createTime;
+    public String commentId;
+    public long receiverUid;
+    public String text;
+    public int rating;
+    public boolean isMentorComment;
+    public Date createTime;
 
     protected Comment() {    } // Protect default constructor
 
-    private Comment(int receiverUid, int rating, String text, Date createTime, boolean isMentorComment) {
+    public Comment(long receiverUid, int rating, String text, Date createTime, boolean isMentorComment) {
         this.receiverUid = receiverUid;
         this.rating = rating;
         this.text = text;
@@ -42,7 +42,7 @@ public class Comment {
         if(commentRef == null)
             return false;
 
-        commentRef.child(Integer.toString(receiverUid)).child(commentId).setValue(this);
+        commentRef.child(Long.toString(receiverUid)).child(commentId).setValue(this);
         return true;
     }
 
@@ -57,6 +57,6 @@ public class Comment {
         if(this.receiverUid == 0)
             return null;
         Random r = new Random();
-        return Integer.toString(this.receiverUid) + "-" + this.createTime + Integer.toString(r.nextInt());
+        return Long.toString(this.receiverUid) + "-" + this.createTime + Integer.toString(r.nextInt());
     }
 }

@@ -17,18 +17,18 @@ import java.util.Random;
 
 public class Slot {
     private static final String DB_NAME_SLOT = "slots";
-    private String slotId;
-    private Date startTime;
-    private Date endTime;
-    private int mentorUid;
-    private String typeOfService;
+    public String slotId;
+    public Date startTime;
+    public Date endTime;
+    public long mentorUid;
+    public String typeOfService;
 
-    private boolean isBooked;
-    private boolean isConfirmed;
-    private int menteeUid;
+    public boolean isBooked;
+    public boolean isConfirmed;
+    public long menteeUid;
 
     protected Slot() {} // Protect default constructor
-    public Slot(Date startTime, Date endTime, int mentorUid, String typeOfService) {
+    public Slot(Date startTime, Date endTime, long mentorUid, String typeOfService) {
         this.startTime = startTime;
         this.endTime = endTime;
         this.mentorUid = mentorUid;
@@ -39,7 +39,7 @@ public class Slot {
         this.slotId = generateNewSlotId();
     }
 
-    public boolean setAsBooked(int menteeUid) {
+    public boolean setAsBooked(long menteeUid) {
         if(this.isBooked)
             return false;
 
@@ -48,7 +48,7 @@ public class Slot {
         return true;
     }
 
-    public boolean setAsConfirmed(int mentorUid) {
+    public boolean setAsConfirmed(long mentorUid) {
         if(this.isBooked && mentorUid == this.mentorUid) {
             this.isConfirmed = true;
             return true;
@@ -69,7 +69,7 @@ public class Slot {
         if(slotRef == null)
             return false;
 
-        slotRef.child(Integer.toString(mentorUid)).child(slotId).setValue(this);
+        slotRef.child(Long.toString(mentorUid)).child(slotId).setValue(this);
         return true;
     }
 
@@ -77,6 +77,6 @@ public class Slot {
         if(this.mentorUid == 0)
             return null;
         Random r = new Random();
-        return Integer.toString(this.mentorUid) + "-" + this.startTime.toString() + Integer.toString(r.nextInt());
+        return Long.toString(this.mentorUid) + "-" + this.startTime.toString() + Integer.toString(r.nextInt());
     }
 }
