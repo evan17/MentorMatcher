@@ -7,6 +7,7 @@ import java.util.List;
  */
 
 public class Mentee {
+    /*
     private int menteeRating;
     private List<Comment> commentList;
 
@@ -30,4 +31,5 @@ public class Mentee {
     public boolean commentAppointment(int slotId, int rating, String text) {
         return false;
     }
+    */
 }

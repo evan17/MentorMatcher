@@ -8,6 +8,7 @@ import java.util.List;
  */
 
 public class Mentor extends User {
+    /*
     // Mentor related
     private String title;
     private String aboutMe;
@@ -56,4 +57,5 @@ public class Mentor extends User {
     public boolean commentAppointment(int slotId, int rating, String text) {
         return false;
     }
+    */
 }

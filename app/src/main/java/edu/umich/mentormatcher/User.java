@@ -50,6 +50,7 @@ public class User {
         return date.getTime() + rand.nextInt(99);
     }
 
+    /*
     public static DatabaseReference getUserDBRefFromFirebase(long uid) {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference userRef = database.getReference(DB_NAME_USER).child(Long.toString(uid));
@@ -65,7 +66,7 @@ public class User {
 
         commentRef.child(Long.toString(uid)).setValue(this);
         return true;
-    }
+    }*/
 }
 
 
