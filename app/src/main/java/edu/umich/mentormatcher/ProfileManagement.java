@@ -9,9 +9,13 @@ package edu.umich.mentormatcher;
 // To Do:
 // Connect Firebase and import classes throughout
 // Remove text placeolders with firebase calls
-// Decide if a menu should be included throughout (and if so, add)
 // Finish navigation
-// Add in firebase core stuff (done on other screens)
+
+
+//Complete:
+// Menu added
+// Buttons created and tied
+// Firebase Auth configured and added
 
 import android.app.Activity;
 import android.content.Intent;
