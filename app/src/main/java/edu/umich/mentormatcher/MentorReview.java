@@ -4,12 +4,24 @@ package edu.umich.mentormatcher;
 // The mentee can then go to the mentor booking page
 // Kevin
 
+// To Do:
+// Connect Firebase and import classes throughout
+// Remove text placeolders with firebase calls
+// Decide if a menu should be included throughout (and if so, add)
+// Finish navigation
+
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.w3c.dom.Text;
 
@@ -22,6 +34,10 @@ public class MentorReview extends Activity implements View.OnClickListener{
     private TextView textReviews;
     private Button buttonBack;
     private Button buttonCheckAvailability;
+
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
 
     @Override
@@ -45,11 +61,43 @@ public class MentorReview extends Activity implements View.OnClickListener{
         // Update Text from Database - placeholder data until databse created / setup
         textName.setText("Panpan");
         textPosition.setText("Amazon Ruler");
-        textServices.setText("E/'erthang");
+        textServices.setText("E\'erthang");
         textAbout.setText("I now like tea mor than coffee / java");
         textReviews.setText("Stellar");
 
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(MentorReview.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MentorReview.this, "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MentorReview.this, CareerFunctions.class);
+                    startActivity(intent);
+                }
+            }
+        };
+
+
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+
 
     @Override
     public void onClick(View v) {

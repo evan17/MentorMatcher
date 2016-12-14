@@ -30,18 +30,10 @@
             android:weightSum="1">
 
             <Button
-                android:text="Back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonBack"
-                android:layout_weight="0.04" />
-
-            <Button
                 android:text="View My Profile"
-                android:layout_width="231dp"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/buttonProfile"
-                android:layout_weight="0.04" />
+                android:id="@+id/buttonProfile" />
 
         </LinearLayout>
 
