@@ -13,7 +13,7 @@ package edu.umich.mentormatcher;
 //Complete:
 // Menu added
 // Buttons created and tied
-//
+// Firebase Auth configured and added
 
 
 import android.app.Activity;
