@@ -7,15 +7,21 @@ package edu.umich.mentormatcher;
 // To Do:
 // Connect Firebase and import classes throughout
 // Remove text placeolders with firebase calls
-// Decide if a menu should be included throughout (and if so, add)
 // Finish navigation
 // Figure out how to get the aggregated rating
+
+//Complete:
+// Menu added
+// Buttons created and tied
+//
 
 
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -26,7 +32,6 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class UserActivityManagementScreen extends Activity implements View.OnClickListener{
 
-    private Button buttonBack;
     private Button buttonProfile;
     private Button buttonRatings;
     private Button buttonAppointments;
@@ -43,7 +48,6 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
         setContentView(R.layout.activity_user_management_screen);
 
         //  Link Java object to widgets
-        buttonBack = (Button) findViewById(R.id.buttonBack);
         buttonProfile = (Button) findViewById(R.id.buttonProfile);
         buttonRatings = (Button) findViewById(R.id.buttonRatings);
         buttonAppointments = (Button) findViewById(R.id.buttonAppointments);
@@ -52,7 +56,6 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
 
         // Set listeners
 
-        buttonBack.setOnClickListener(this);
         buttonProfile.setOnClickListener(this);
         buttonRatings.setOnClickListener(this);
         buttonAppointments.setOnClickListener(this);
@@ -74,7 +77,7 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
                 if (user != null) {
                     Toast.makeText(UserActivityManagementScreen.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(UserActivityManagementScreen.this, "Nobody Logged In", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(UserActivityManagementScreen.this, "Please Login", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(UserActivityManagementScreen.this, MainActivity.class);
                     startActivity(intent);
                 }
@@ -103,10 +106,7 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
     public void onClick(View v) {
         // Event handler
         switch (v.getId()) {
-            case R.id.buttonBack:
-                // Go to prior screen - code forthcoming
 
-                break;
             case R.id.buttonProfile:
                 // Go to proile screen - code forthcoming
                 Intent intent = new Intent(this, ProfileManagement.class);
@@ -125,4 +125,38 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
 
 
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intentMonitor = new Intent(UserActivityManagementScreen.this, CareerFunctions.class);
+
+        if (mAuth.getCurrentUser() != null ) {
+            if (item.getItemId() == R.id.menuLogout) {
+                mAuth.signOut();
+
+            } else if (item.getItemId() == R.id.menuCareerFunctions) {
+                startActivity(intentMonitor);
+
+            }
+        } else {
+            Toast.makeText(this, "Gotta log in", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigationmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+
+
+
 }

@@ -73,8 +73,8 @@ public class MentorReview extends Activity implements View.OnClickListener{
                 if (user != null) {
                     Toast.makeText(MentorReview.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(MentorReview.this, "Nobody Logged In", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MentorReview.this, MainActivity.class);
+                    Toast.makeText(MentorReview.this, "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MentorReview.this, CareerFunctions.class);
                     startActivity(intent);
                 }
             }
