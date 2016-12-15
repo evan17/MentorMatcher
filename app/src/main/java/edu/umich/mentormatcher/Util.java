@@ -14,4 +14,14 @@ public class Util {
         currentSlotId = "";
         currentCommentId = "";
     }
+
+    public static long getMentorIdFromSlotId(String slotId) {
+        String[] words = slotId.split("-");
+        return Long.parseLong(words[0]);
+    }
+
+    public static long getReceiverIDFromCommentId(String commentId) {
+        String[] words = commentId.split("-");
+        return Long.parseLong(words[0]);
+    }
 }

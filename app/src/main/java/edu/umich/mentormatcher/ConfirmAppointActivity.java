@@ -9,6 +9,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class ConfirmAppointActivity extends Activity implements View.OnClickListener{
     private RadioButton yesRadioButton;
@@ -37,7 +39,8 @@ public class ConfirmAppointActivity extends Activity implements View.OnClickList
     }
 
     public void setUIValue() {
-        //get value from DB
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = database.getReference("comment");
     }
 
     public void confirmAppointment() {
