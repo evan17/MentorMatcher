@@ -18,17 +18,18 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static edu.umich.mentormatcher.R.id.buttonC;
+
 //This registration page is coded to write to the User node of the database
 
 public class Registration extends Activity implements View.OnClickListener, OnItemSelectedListener {
 
 //declare objects
 
-    private Button buttonConfirm;
+    private Button buttonC;
     private Button buttonBecomeMentor;
     private EditText editTextEmail;
     private EditText editTextPassword;
-    private EditText editTextConfirmPassword;
     private Spinner ConfirmAspiration;
 
 
@@ -38,27 +39,23 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         setContentView(R.layout.activity_login);
 
         //Link to UI
-        buttonConfirm = (Button) findViewById(R.id.buttonConfirm);
+        buttonC = (Button)findViewById(R.id.buttonC);
         buttonBecomeMentor = (Button)findViewById(R.id.buttonBecomeMentor);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
-        editTextConfirmPassword = (EditText) findViewById(R.id.editTextConfirmPassword);
         ConfirmAspiration = (Spinner) findViewById(R.id.ConfirmAspiration);
 
-        //Start a Listener
-        buttonConfirm.setOnClickListener(this);
+        buttonC.setOnClickListener(this);
         buttonBecomeMentor.setOnClickListener(this);
         editTextEmail.setOnClickListener(this);
         editTextPassword.setOnClickListener(this);
-        editTextConfirmPassword.setOnClickListener(this);
         ConfirmAspiration.setOnItemSelectedListener(this);
 
         //Add Firebase Auth here
         //Add onstart onstop
 
-
         //Creating list of items in the spinner
-        List<String> categories = new ArrayList<>();
+        List<String> categories = new ArrayList<String>();
         categories.add("Consulting");
         categories.add("Finance");
         categories.add("Operations");
@@ -81,7 +78,8 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
     }
 
-    @Override
+    private void findViewById(Button buttonC) {
+    }
 
     public void onClick (View view) {
 
@@ -90,7 +88,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         //User class does not include something called confirm password. How do we account for that on this page?
         //Also this page does not capture two more elements of the User class which are name and uid
 
-        if (view == buttonConfirm){
+        if (view == buttonC){
                     Intent intentLogin = new Intent (Registration.this, Login.class);
                     startActivity(intentLogin);
         } else {
