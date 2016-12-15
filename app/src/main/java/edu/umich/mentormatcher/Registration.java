@@ -74,6 +74,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
 
         //Code that gets the selected text from the selected item
+
         String selectedText = (String) ConfirmAspiration.getSelectedItem();
 
     }
