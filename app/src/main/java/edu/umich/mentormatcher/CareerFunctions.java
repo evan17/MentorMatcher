@@ -10,6 +10,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
+import static edu.umich.mentormatcher.R.id.buttonconsulting;
+
 public class CareerFunctions extends Activity implements View.OnClickListener {
 
     private Button buttonConsulting;
@@ -23,7 +25,7 @@ public class CareerFunctions extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_career_functions);
 
-        buttonConsulting=(Button)findViewById(R.id.buttonconsulting);
+        buttonConsulting=(Button)findViewById(buttonconsulting);
         buttonFinance=(Button)findViewById(R.id.buttonfiniance);
         buttonMarketing=(Button)findViewById(R.id.buttonfiniance);
         buttonPM=(Button)findViewById(R.id.buttonpm);
@@ -33,6 +35,7 @@ public class CareerFunctions extends Activity implements View.OnClickListener {
         buttonFinance.setOnClickListener(this);
         buttonOperations.setOnClickListener(this);
         buttonMarketing.setOnClickListener(this);
+        buttonConsulting.setOnClickListener(this);
     }
 
     @Override
@@ -42,6 +45,7 @@ public class CareerFunctions extends Activity implements View.OnClickListener {
 
         if(v==buttonConsulting){
             Util.funtions = "consulting";
+
         }
         else if(v==buttonFinance){
 

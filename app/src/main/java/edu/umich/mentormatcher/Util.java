@@ -14,7 +14,7 @@ public class Util {
         currentUid = 0;
         currentSlotId = "";
         currentCommentId = "";
-        funtions="product management";
+        funtions="";
     }
 
     public static long getMentorIdFromSlotId(String slotId) {
