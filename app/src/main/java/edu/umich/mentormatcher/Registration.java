@@ -1,6 +1,9 @@
 package edu.umich.mentormatcher;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -49,6 +52,9 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         editTextConfirmPassword.setOnClickListener(this);
         ConfirmAspiration.setOnItemSelectedListener(this);
 
+        //Add Firebase Auth here
+        //Add onstart onstop
+
 
         //Creating list of items in the spinner
         List<String> categories = new ArrayList<>();
@@ -73,13 +79,40 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         String selectedText = (String) ConfirmAspiration.getSelectedItem();
 
     }
+
     @Override
 
     public void onClick (View view) {
+
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
         //User class does not include something called confirm password. How do we account for that on this page?
         //Also this page does not capture two more elements of the User class which are name and uid
+
+        if (view == buttonConfirm){
+                    Intent intentLogin = new Intent (Registration.this, Login.class);
+                    startActivity(intentLogin);
+        } else {
+            if (view == buttonBecomeMentor) {
+                new AlertDialog.Builder(Registration.this)
+                        .setMessage("Do you want to become a mentor?")
+                        .setNegativeButton("Become a Mentor", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int i) {
+                                Intent intent = new Intent(Registration.this, MentorRegistration.class);
+                                startActivity(intent);
+                            }
+                        })
+                        .setPositiveButton("Do not become a mentor", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialogInterface, int i) {
+                                Intent intent = new Intent(Registration.this, Registration.class);
+                                startActivity(intent);
+                            }
+                        }).show();
+
+            }
+        }
     }
 
     @Override
