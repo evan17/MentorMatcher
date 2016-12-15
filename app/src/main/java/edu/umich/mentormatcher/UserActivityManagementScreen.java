@@ -9,6 +9,7 @@ package edu.umich.mentormatcher;
 // Remove text placeolders with firebase calls
 // Finish navigation
 // Figure out how to get the aggregated rating
+// Utility class to potentially replace screen by screen queries
 
 //Complete:
 // Menu added
@@ -29,11 +30,7 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.ChildEventListener;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
+
 
 public class UserActivityManagementScreen extends Activity implements View.OnClickListener{
 
@@ -83,50 +80,11 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
                     Toast.makeText(UserActivityManagementScreen.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
                 } else {
                     Toast.makeText(UserActivityManagementScreen.this, "Please Login", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(UserActivityManagementScreen.this, MainActivity.class);
+                    Intent intent = new Intent(UserActivityManagementScreen.this, Login.class);
                     startActivity(intent);
                 }
             }
         };
-
-        //Firebase call to setup button and textview text
-        /* Stll working on calling user's name
-        String name = User.name.getText().toString();
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataUser = database.getReference();
-        dataUser.child("users").equalTo(name).addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
-
-                User user = dataSnapshot.getValue(User.class);
-                String val = textName.getText().toString();
-                val = "Name";
-                textName.setText(val);
-            }
-
-            @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
-
-            }
-
-            @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
-
-
 
 
     }
