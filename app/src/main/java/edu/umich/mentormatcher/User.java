@@ -49,6 +49,14 @@ public class User {
         Random rand = new Random();
         return date.getTime() + rand.nextInt(99);
     }
+    //Get Methods for Career Aspiration and Name of User
+    public String getName() {
+        return name;
+    }
+    public String getCareerAspiration() {
+        return careerAspiration;
+    }
+
 
     /*
     public static DatabaseReference getUserDBRefFromFirebase(long uid) {

@@ -29,6 +29,11 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class UserActivityManagementScreen extends Activity implements View.OnClickListener{
 
@@ -83,6 +88,46 @@ public class UserActivityManagementScreen extends Activity implements View.OnCli
                 }
             }
         };
+
+        //Firebase call to setup button and textview text
+        /* Stll working on calling user's name
+        String name = User.name.getText().toString();
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dataUser = database.getReference();
+        dataUser.child("users").equalTo(name).addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                User user = dataSnapshot.getValue(User.class);
+                String val = textName.getText().toString();
+                val = "Name";
+                textName.setText(val);
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        */
+
+
+
 
     }
 
