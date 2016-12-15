@@ -9,7 +9,7 @@ public class Util {
     public static String currentSlotId = "";
     public static String currentCommentId = "";
 
-    public void resetAllValues() {
+    public static void resetAllValues() {
         currentUid = 0;
         currentSlotId = "";
         currentCommentId = "";
