@@ -15,6 +15,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -115,8 +117,41 @@ public class MentorReview extends Activity implements View.OnClickListener{
                 break;
         }
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intentMonitor = new Intent(MentorReview.this, CareerFunctions.class);
+
+        if (mAuth.getCurrentUser() != null ) {
+            if (item.getItemId() == R.id.menuLogout) {
+                mAuth.signOut();
+
+            } else if (item.getItemId() == R.id.menuCareerFunctions) {
+                startActivity(intentMonitor);
+
+            }
+        } else {
+            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show();
+        }
 
 
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigationmenu,menu);
+        return super.onCreateOptionsMenu(menu);
 
     }
+
+
+
 }
+
+
+

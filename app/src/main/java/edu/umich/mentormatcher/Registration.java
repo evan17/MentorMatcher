@@ -5,6 +5,9 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,6 +18,9 @@ import java.util.List;
 import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import java.util.ArrayList;
 
@@ -32,6 +38,8 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
     private EditText editTextPassword;
     private Spinner ConfirmAspiration;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +60,22 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         ConfirmAspiration.setOnItemSelectedListener(this);
 
         //Add Firebase Auth here
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(Registration.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(Registration.this, "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(Registration.this, CareerFunctions.class);
+                    startActivity(intent);
+                }
+            }
+        };
+
         //Add onstart onstop
 
         //Creating list of items in the spinner
@@ -105,13 +129,15 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
                         .setPositiveButton("Do not become a mentor", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(Registration.this, Registration.class);
+                                Intent intent = new Intent(Registration.this, Login.class);
                                 startActivity(intent);
                             }
                         }).show();
 
             }
         }
+
+
     }
 
     @Override
@@ -128,6 +154,37 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
     public void onNothingSelected(AdapterView<?> parent) {
         Toast.makeText(Registration.this, "Nothing Selected", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intentMonitor = new Intent(Registration.this, CareerFunctions.class);
+
+        if (mAuth.getCurrentUser() != null ) {
+            if (item.getItemId() == R.id.menuLogout) {
+                mAuth.signOut();
+
+            } else if (item.getItemId() == R.id.menuCareerFunctions) {
+                startActivity(intentMonitor);
+
+            }
+        } else {
+            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigationmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
 
 }
 
