@@ -44,7 +44,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_registration);
 
         //Link to UI
         buttonC = (Button)findViewById(R.id.buttonC);
