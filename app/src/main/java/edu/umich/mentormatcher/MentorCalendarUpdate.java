@@ -9,6 +9,7 @@ package edu.umich.mentormatcher;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
 import android.os.Build;
@@ -19,18 +20,28 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import static edu.umich.mentormatcher.R.id.textViewEndTime;
 
 public class MentorCalendarUpdate extends Activity implements View.OnClickListener {
 
     private TextView textViewSetdate;
     private TextView textViewSettime;
+    private TextView textViewEndTime;
+    private EditText editTextService;
     private Button buttonSetdate;
     private Button buttonSettime;
+    private Button buttonSetEndTime;
+    private Button buttonSlotUpdate;
     int mYear,mMonth,mDay,mHour,mMinutes;
 
     private FirebaseAuth mAuth;
@@ -43,10 +54,17 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
 
         textViewSetdate=(TextView)findViewById(R.id.textViewDate);
         textViewSettime=(TextView) findViewById(R.id.textViewTime);
+        textViewEndTime=(TextView) findViewById(R.id.textViewEndTime);
+        editTextService=(EditText)findViewById(R.id.editTextService);
         buttonSetdate=(Button)findViewById(R.id.buttonSetdate);
         buttonSettime=(Button)findViewById(R.id.buttonSettime);
+        buttonSetEndTime=(Button) findViewById(R.id.buttonSetEndTime);
+        buttonSlotUpdate=(Button) findViewById(R.id.buttonSlotUpdate);
 
         buttonSetdate.setOnClickListener(this);
+        buttonSettime.setOnClickListener(this);
+        buttonSetEndTime.setOnClickListener(this);
+        buttonSlotUpdate.setOnClickListener(this);
 
         // Firebase Auth implementation
         mAuth = FirebaseAuth.getInstance();
@@ -107,10 +125,10 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
 
-                   // view.updateDate(2016,month,dayOfMonth);
+                   view.updateDate(mYear,month,dayOfMonth);
 
                 month=month+1;
-                textViewSetdate.setText(dayOfMonth+"-"+month+"-"+year);
+                textViewSetdate.setText(month+"-"+dayOfMonth+"-"+year);
             }
 
 
@@ -119,11 +137,53 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
         datePickerDialog.show();
 
     }
+    @TargetApi(Build.VERSION_CODES.N)
+    public void TimePic(View v){
+
+        final View newview=v;
+        final Calendar c=Calendar.getInstance();
+        mHour=c.get(Calendar.HOUR_OF_DAY);
+        mMinutes=c.get(Calendar.MINUTE);
+
+        TimePickerDialog timePickerDialog= new TimePickerDialog(this, new TimePickerDialog.OnTimeSetListener() {
+            @Override
+            public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+                if(newview==buttonSettime){
+                    textViewSettime.setText(hourOfDay+":"+minute);
+                }
+                else if(newview==buttonSetEndTime){
+                    textViewEndTime.setText(hourOfDay+":"+minute);
+                }
+            }
+        },mHour,mMinutes,false);
+
+        timePickerDialog.show();
+    }
+
 
     @Override
     public void onClick(View v) {
         if(v==buttonSetdate){
             datePic();
+        }
+        else if(v==buttonSettime||v==buttonSetEndTime){
+            TimePic(v);
+        }
+        else if(v==buttonSlotUpdate){
+
+            if(textViewSetdate!=null&textViewSettime!=null&textViewEndTime!=null){
+
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                DatabaseReference ref = database.getReference("slots");
+
+                String start=textViewSettime.getText().toString();
+                String end= textViewEndTime.getText().toString();
+                String date=textViewSetdate.getText().toString();
+                String service=editTextService.getText().toString();
+                Slot slot = new Slot(start,end,date,1481250845829L,service);
+                DatabaseReference newSlotRef = ref.child("1481250845829").push();
+                newSlotRef.setValue(slot);
+            }
         }
     }
 }

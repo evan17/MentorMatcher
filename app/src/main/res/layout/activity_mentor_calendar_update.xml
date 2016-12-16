@@ -11,44 +11,103 @@
     tools:context="edu.umich.mentormatcher.MentorCalendarUpdate">
 
     <TextView
-        android:text="Date"
+        android:text="Start Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="26dp"
+        android:id="@+id/textViewTime"
+        android:layout_below="@+id/buttonSetdate"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="23dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="23dp"
-        android:id="@+id/textViewDate" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Select Date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/textViewDate"
-        android:layout_toEndOf="@+id/textViewDate"
-        android:layout_marginLeft="53dp"
-        android:layout_marginStart="53dp"
-        android:id="@+id/buttonSetdate" />
+        android:id="@+id/buttonSetdate"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textViewDate"
+        android:layout_alignBottom="@+id/textViewDate"
+        android:layout_alignLeft="@+id/buttonSettime"
+        android:layout_alignStart="@+id/buttonSettime" />
 
-    <TextView
-        android:text="Time"
+    <Button
+        android:text="Update Slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/buttonSetdate"
-        android:layout_alignLeft="@+id/textViewDate"
-        android:layout_alignStart="@+id/textViewDate"
-        android:layout_marginTop="28dp"
-        android:id="@+id/textViewTime" />
+        android:id="@+id/buttonSlotUpdate"
+        android:textSize="14sp"
+        android:layout_marginTop="114dp"
+        android:layout_below="@+id/textView19"
+        android:layout_alignRight="@+id/buttonSettime"
+        android:layout_alignEnd="@+id/buttonSettime" />
+
+    <TextView
+        android:text="End Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewEndTime"
+        android:layout_below="@+id/textViewTime"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="55dp" />
+
+    <TextView
+        android:text="Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="22dp"
+        android:id="@+id/textViewDate"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="Select Time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textViewTime"
-        android:layout_alignLeft="@+id/buttonSetdate"
-        android:layout_alignStart="@+id/buttonSetdate"
-        android:id="@+id/buttonSettime" />
+        android:id="@+id/buttonSettime"
+        android:textSize="14sp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_alignBaseline="@+id/textViewTime"
+        android:layout_alignBottom="@+id/textViewTime"
+        android:layout_toRightOf="@+id/textViewTime"
+        android:layout_toEndOf="@+id/textViewTime" />
+
+    <TextView
+        android:text="Service Provide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView19"
+        android:layout_alignBaseline="@+id/editTextService"
+        android:layout_alignBottom="@+id/editTextService"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Select Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSetEndTime"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textViewEndTime"
+        android:layout_alignBottom="@+id/textViewEndTime"
+        android:layout_alignLeft="@+id/buttonSlotUpdate"
+        android:layout_alignStart="@+id/buttonSlotUpdate" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:text="Mock Interview"
+        android:ems="10"
+        android:id="@+id/editTextService"
+        android:layout_marginTop="57dp"
+        android:textSize="14sp"
+        android:layout_below="@+id/buttonSetEndTime"
+        android:layout_toRightOf="@+id/textView19"
+        android:layout_toEndOf="@+id/textView19"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp" />
 </RelativeLayout>
