@@ -31,6 +31,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:layout_centerHorizontal="true"
         android:orientation="horizontal">
 
         <RadioButton
@@ -65,6 +66,7 @@
 
         <RadioButton
             android:text="5"
+            android:checked="true"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/radioButtonScore5"
