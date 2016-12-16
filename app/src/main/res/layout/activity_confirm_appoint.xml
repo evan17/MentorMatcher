@@ -10,26 +10,33 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.umich.mentormatcher.ConfirmAppointActivity">
 
-    <RadioButton
-        android:text="Yes"
+    <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
+        android:layout_marginTop="130dp"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="136dp"
-        android:id="@+id/radioButtonYes" />
+        android:orientation="horizontal">
 
-    <RadioButton
-        android:text="No"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/radioButtonNo"
-        android:layout_alignBaseline="@+id/radioButtonYes"
-        android:layout_alignBottom="@+id/radioButtonYes"
-        android:layout_toRightOf="@+id/radioButtonYes"
-        android:layout_toEndOf="@+id/radioButtonYes"
-        android:layout_marginLeft="47dp"
-        android:layout_marginStart="47dp" />
+            <RadioButton
+                android:text="Yes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_centerHorizontal="true"
+                android:id="@+id/radioButtonYes" />
+
+            <RadioButton
+                android:text="No"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/radioButtonNo"
+                android:layout_alignBaseline="@+id/radioButtonYes"
+                android:layout_alignBottom="@+id/radioButtonYes"
+                android:layout_toRightOf="@+id/radioButtonYes"
+                android:layout_toEndOf="@+id/radioButtonYes"
+                android:layout_marginLeft="47dp"
+                android:layout_marginStart="47dp" />
+    </RadioGroup>
 
     <EditText
         android:layout_width="wrap_content"
@@ -37,7 +44,6 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editTextConfirmationMsg"
-        android:layout_below="@+id/radioButtonYes"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="93dp" />
 
@@ -54,7 +60,6 @@
         android:text="Send confirmation"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/radioButtonYes"
         android:layout_alignLeft="@+id/editTextConfirmationMsg"
         android:layout_alignStart="@+id/editTextConfirmationMsg"
         android:layout_marginTop="47dp"
