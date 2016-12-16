@@ -65,7 +65,7 @@ public class MentorListReturn extends Activity {
 
                         User userlist=dataSnapshot.getValue(User.class);
                         String val=Test.getText().toString();
-                        val=val+userlist.name;
+                        val=userlist.name;
                         Test.setText(val);
                     }
 

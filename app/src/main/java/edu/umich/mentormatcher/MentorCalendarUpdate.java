@@ -6,18 +6,32 @@ package edu.umich.mentormatcher;
 // Added Firebase Auth
 // Added Menu
 
+import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.icu.util.Calendar;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
+import android.widget.DatePicker;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class MentorCalendarUpdate extends Activity {
+public class MentorCalendarUpdate extends Activity implements View.OnClickListener {
+
+    private TextView textViewSetdate;
+    private TextView textViewSettime;
+    private Button buttonSetdate;
+    private Button buttonSettime;
+    int mYear,mMonth,mDay,mHour,mMinutes;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -27,8 +41,12 @@ public class MentorCalendarUpdate extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor_calendar_update);
 
+        textViewSetdate=(TextView)findViewById(R.id.textViewDate);
+        textViewSettime=(TextView) findViewById(R.id.textViewTime);
+        buttonSetdate=(Button)findViewById(R.id.buttonSetdate);
+        buttonSettime=(Button)findViewById(R.id.buttonSettime);
 
-
+        buttonSetdate.setOnClickListener(this);
 
         // Firebase Auth implementation
         mAuth = FirebaseAuth.getInstance();
@@ -77,6 +95,35 @@ public class MentorCalendarUpdate extends Activity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.N)
+    public void datePic(){
+
+        final Calendar c=Calendar.getInstance();
+        mYear=c.get(Calendar.YEAR);
+        mMonth=c.get(Calendar.MONTH);
+        mDay=c.get(Calendar.DAY_OF_MONTH);
+        DatePickerDialog datePickerDialog = new DatePickerDialog(this, new DatePickerDialog.OnDateSetListener() {
+            @Override
+            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
 
+                   // view.updateDate(2016,month,dayOfMonth);
+
+                month=month+1;
+                textViewSetdate.setText(dayOfMonth+"-"+month+"-"+year);
+            }
+
+
+        },mDay,mMonth,mYear);
+
+        datePickerDialog.show();
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v==buttonSetdate){
+            datePic();
+        }
+    }
 }
