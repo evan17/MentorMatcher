@@ -21,10 +21,10 @@ import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
-
-import static edu.umich.mentormatcher.R.id.buttonC;
 
 //This registration page is coded to write to the User node of the database
 
@@ -110,7 +110,14 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
         String email = editTextEmail.getText().toString();
         String password = editTextPassword.getText().toString();
-        //User class does not include something called confirm password. How do we account for that on this page?
+
+        User user= new User (email,password);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dataUser = database.getReference("Users");
+
+        DatabaseReference dataNewUser = dataUser.push();
+        dataNewUser.setValue(user);
+
         //Also this page does not capture two more elements of the User class which are name and uid
 
         if (view == buttonC){
@@ -145,6 +152,13 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
     public void onItemSelected (AdapterView <?> parent, View v, int position,
                                 long id) {
         String careerAspiration = parent.getItemAtPosition(1).toString();
+
+        User user= new User (careerAspiration);
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference dataUser = database.getReference("Users");
+
+        DatabaseReference dataNewUser = dataUser.push();
+        dataNewUser.setValue(user);
 
         // Showing selected spinner item
         Toast.makeText(parent.getContext(), "Selected: " + careerAspiration, Toast.LENGTH_SHORT).show();
