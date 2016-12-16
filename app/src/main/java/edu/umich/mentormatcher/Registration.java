@@ -136,29 +136,8 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         if (view == buttonC){
                     Intent intentLogin = new Intent (Registration.this, Login.class);
                     startActivity(intentLogin);
-        } else {
-            if (view == buttonBecomeMentor) {
-                new AlertDialog.Builder(Registration.this)
-                        .setMessage("Do you want to become a mentor?")
-                        .setNegativeButton("Become a Mentor", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int i) {
-                                Intent intent = new Intent(Registration.this, MentorRegistration.class);
-                                startActivity(intent);
-                            }
-                        })
-                        .setPositiveButton("Do not become a mentor", new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialogInterface, int i) {
-                                Intent intent = new Intent(Registration.this, Login.class);
-                                startActivity(intent);
-                            }
-                        }).show();
-
-            }
         }
-
-
+        
     }
 
     @Override
