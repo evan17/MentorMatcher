@@ -47,8 +47,8 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         setContentView(R.layout.activity_registration);
 
         //Link to UI
-        buttonC = (Button)findViewById(R.id.buttonC);
-        buttonBecomeMentor = (Button)findViewById(R.id.buttonBecomeMentor);
+        buttonC = (Button) findViewById(R.id.buttonC);
+        buttonBecomeMentor = (Button) findViewById(R.id.buttonBecomeMentor);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
         editTextPassword = (EditText) findViewById(R.id.editTextPassword);
         ConfirmAspiration = (Spinner) findViewById(R.id.ConfirmAspiration);
@@ -75,8 +75,20 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
                 }
             }
         };
+    
+        }
+        @Override
+        public void onStart(){
+            super.onStart();
+            mAuth.addAuthStateListener(mAuthListener);
+        }
 
-        //Add onstart onstop
+        @Override
+        public void onStop(){
+            super.onStop();
+            if (mAuthListener !=null){
+                mAuth.removeAuthStateListener(mAuthListener);
+            }
 
         //Creating list of items in the spinner
         List<String> categories = new ArrayList<String>();
@@ -95,7 +107,6 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
         //attaching data adapter to spinner
         ConfirmAspiration.setAdapter(adapter);
-
 
         //Code that gets the selected text from the selected item
 
