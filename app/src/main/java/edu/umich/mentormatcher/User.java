@@ -39,6 +39,10 @@ public class User {
 
         this.uid = generateNewUid();
         this.isMentor = false;
+
+        this.title = "";
+        this.aboutMe = "";
+        this.reward = "";
     }
 
     private long generateNewUid() {
