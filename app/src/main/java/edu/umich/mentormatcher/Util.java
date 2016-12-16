@@ -8,11 +8,13 @@ public class Util {
     public static long currentUid = 0;
     public static String currentSlotId = "";
     public static String currentCommentId = "";
+    public static String funtions="product management";
 
     public static void resetAllValues() {
         currentUid = 0;
         currentSlotId = "";
         currentCommentId = "";
+        funtions="";
     }
 
     public static long getMentorIdFromSlotId(String slotId) {
@@ -24,4 +26,5 @@ public class Util {
         String[] words = commentId.split("-");
         return Long.parseLong(words[0]);
     }
+
 }

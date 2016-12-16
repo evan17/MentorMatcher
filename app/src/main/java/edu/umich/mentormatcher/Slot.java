@@ -18,8 +18,9 @@ import java.util.Random;
 public class Slot {
     private static final String DB_NAME_SLOT = "slots";
     public String slotId;
-    public Date startTime;
-    public Date endTime;
+    public String startTime;
+    public String endTime;
+    public String availdate;
     public long mentorUid;
     public String typeOfService;
 
@@ -28,9 +29,10 @@ public class Slot {
     public long menteeUid;
 
     protected Slot() {} // Protect default constructor
-    public Slot(Date startTime, Date endTime, long mentorUid, String typeOfService) {
+    public Slot(String startTime, String endTime, String availdate, long mentorUid, String typeOfService) {
         this.startTime = startTime;
         this.endTime = endTime;
+        this.availdate=availdate;
         this.mentorUid = mentorUid;
         this.typeOfService = typeOfService;
         this.isBooked = false;

@@ -13,22 +13,30 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class MentorListReturn extends Activity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
+    private TextView Test;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor_list_return);
 
-
+         Test=(TextView)findViewById(R.id.textViewTest);
 
         // Firebase Auth implementation
         mAuth = FirebaseAuth.getInstance();
@@ -45,6 +53,43 @@ public class MentorListReturn extends Activity {
                 }
             }
         };
+
+        //Firebase database search result query return
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference();
+
+        myRef.child("users").orderByChild("careerAspiration").equalTo(Util.funtions).addChildEventListener(
+                new ChildEventListener() {
+                    @Override
+                    public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+
+                        User userlist=dataSnapshot.getValue(User.class);
+                        String val=Test.getText().toString();
+                        val=userlist.name;
+                        Test.setText(val);
+                    }
+
+                    @Override
+                    public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                    }
+
+                    @Override
+                    public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                }
+        );
 
     }
 
