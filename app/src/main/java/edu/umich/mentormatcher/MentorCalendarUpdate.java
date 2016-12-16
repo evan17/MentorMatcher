@@ -124,14 +124,12 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
             @Override
             public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
 
-
-                   view.updateDate(mYear,month,dayOfMonth);
-
+                 if(year<mYear) {
+                     view.updateDate(mYear, month, dayOfMonth);
+                 }
                 month=month+1;
                 textViewSetdate.setText(month+"-"+dayOfMonth+"-"+year);
             }
-
-
         },mDay,mMonth,mYear);
 
         datePickerDialog.show();
