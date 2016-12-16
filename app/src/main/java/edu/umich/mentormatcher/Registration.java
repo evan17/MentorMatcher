@@ -137,7 +137,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
                     Intent intentLogin = new Intent (Registration.this, Login.class);
                     startActivity(intentLogin);
         }
-        
+
     }
 
     @Override
@@ -182,8 +182,6 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
         return super.onOptionsItemSelected(item);
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

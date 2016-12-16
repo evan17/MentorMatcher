@@ -27,7 +27,7 @@ public class Login extends Activity implements View.OnClickListener {
     private EditText editTextuser;
     private EditText editTextpassword;
     private Button buttonLogin;
-    private Button buttonRegister;
+    private Button B2;
     private Button buttonForgot;
 
     private FirebaseAuth mAuth;
@@ -39,6 +39,8 @@ public class Login extends Activity implements View.OnClickListener {
         setContentView(R.layout.activity_login);
 
         mAuth = FirebaseAuth.getInstance();
+
+        
 
         mAuthListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -71,19 +73,23 @@ public class Login extends Activity implements View.OnClickListener {
         editTextuser = (EditText) findViewById(R.id.editTextuser);
         editTextpassword = (EditText)findViewById(R.id.editTextpassword);
         buttonLogin = (Button)findViewById(R.id.B1);
-        buttonRegister =(Button)findViewById(R.id.B2);
+        B2 =(Button)findViewById(R.id.B2);
         buttonForgot = (Button)findViewById(R.id.B3);
 
 
         buttonLogin.setOnClickListener(this);
-        buttonRegister.setOnClickListener(this);
+        B2.setOnClickListener(this);
         buttonForgot.setOnClickListener(this);
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(View view) {
 
-    }
+        if (view.getId()==R.id.B2){
+            Intent intentLogin = new Intent (Login.this, Registration.class);
+            startActivity(intentLogin);
+
+    }}
 
     public Button getButtonForgot() {
         return buttonForgot;
