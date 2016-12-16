@@ -111,6 +111,20 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
         Intent intentMonitor = new Intent(ProfileManagement.this, CareerFunctions.class);

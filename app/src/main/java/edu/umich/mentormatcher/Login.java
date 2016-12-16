@@ -2,8 +2,11 @@ package edu.umich.mentormatcher;
 // This is the main Login Page, where the user will sign in
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -44,7 +47,7 @@ public class Login extends Activity implements View.OnClickListener {
                 if (user != null) {
                     Toast.makeText(Login.this, "User Logged In:" + user.getEmail(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(Login.this, "Nobody Logged In", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Login.this, "Gotta Log In", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -125,4 +128,36 @@ public class Login extends Activity implements View.OnClickListener {
                     }
                 });
     }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intentMonitor = new Intent(Login.this, CareerFunctions.class);
+
+        if (mAuth.getCurrentUser() != null ) {
+            if (item.getItemId() == R.id.menuLogout) {
+                mAuth.signOut();
+
+            } else if (item.getItemId() == R.id.menuCareerFunctions) {
+                Toast.makeText(this, "You're There!", Toast.LENGTH_SHORT).show();
+
+            }
+        } else {
+            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigationmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
 }

@@ -1,7 +1,11 @@
 package edu.umich.mentormatcher;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +13,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -31,6 +37,9 @@ public class MentorCommentActivity extends Activity implements View.OnClickListe
     private long currentMentorId;
     private long currentMenteeId;
 
+    private FirebaseAuth mAuth;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,6 +56,23 @@ public class MentorCommentActivity extends Activity implements View.OnClickListe
 
         sendMentorCommentButton.setOnClickListener(this);
         setUIValue();
+
+        mAuth = FirebaseAuth.getInstance();
+        mAuthListener = new FirebaseAuth.AuthStateListener() {
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                if (user != null) {
+                    Toast.makeText(MentorCommentActivity.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(MentorCommentActivity.this, "Please Login", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MentorCommentActivity.this, CareerFunctions.class);
+                    startActivity(intent);
+                }
+            }
+        };
+
+
     }
 
     public void setUIValue() {
@@ -114,4 +140,49 @@ public class MentorCommentActivity extends Activity implements View.OnClickListe
         if(v.getId() == R.id.buttonSendMentorComment)
             commentMentor();
     }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        Intent intentMonitor = new Intent(MentorCommentActivity.this, CareerFunctions.class);
+
+        if (mAuth.getCurrentUser() != null ) {
+            if (item.getItemId() == R.id.menuLogout) {
+                mAuth.signOut();
+
+            } else if (item.getItemId() == R.id.menuCareerFunctions) {
+                Toast.makeText(this, "You're There!", Toast.LENGTH_SHORT).show();
+
+            }
+        } else {
+            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show();
+        }
+
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.navigationmenu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
 }
