@@ -27,11 +27,11 @@ public class User {
     public String aboutMe;
     public String reward;
 
-    protected User() {
+    protected User(String email) {
         // Disable public use of default constructor
     }
 
-    public User(String email, String password, String name, String careerAspiration) {
+    public User(String email, String password) {
         this.email = email;
         this.password = password;
         this.name = name;

@@ -21,17 +21,6 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:text="Select Date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSetdate"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/textViewDate"
-        android:layout_alignBottom="@+id/textViewDate"
-        android:layout_alignLeft="@+id/buttonSettime"
-        android:layout_alignStart="@+id/buttonSettime" />
-
-    <Button
         android:text="Update Slot"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,19 +50,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="Select Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/buttonSettime"
-        android:textSize="14sp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:layout_alignBaseline="@+id/textViewTime"
-        android:layout_alignBottom="@+id/textViewTime"
-        android:layout_toRightOf="@+id/textViewTime"
-        android:layout_toEndOf="@+id/textViewTime" />
 
     <TextView
         android:text="Service Provide"
@@ -110,4 +86,24 @@
         android:layout_toEndOf="@+id/textView19"
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp" />
+
+    <Button
+        android:text="Select Date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSetdate"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textViewDate"
+        android:layout_alignBottom="@+id/textViewDate"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Select Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/buttonSettime"
+        android:textSize="14sp"
+        android:layout_alignBaseline="@+id/textViewTime"
+        android:layout_alignBottom="@+id/textViewTime"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
