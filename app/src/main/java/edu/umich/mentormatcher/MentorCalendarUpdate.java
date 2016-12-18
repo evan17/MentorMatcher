@@ -199,6 +199,7 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
                 String [] datepart=date.split("-");
                 String Year=datepart[0];
                 String Month=datepart[1];
+                textViewSetdate.setText(Month);
                 String Day=datepart[2];
                 int Yearinput=Integer.parseInt(Year);
                 int Monthinput=Integer.parseInt(Month);
