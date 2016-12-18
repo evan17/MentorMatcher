@@ -38,7 +38,22 @@ public class Login extends Activity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+        //Linking objects to UI
+
+        editTextuser = (EditText) findViewById(R.id.editTextuser);
+        editTextpassword = (EditText)findViewById(R.id.editTextpassword);
+        buttonLogin = (Button)findViewById(R.id.B1);
+        B2 =(Button)findViewById(R.id.B2);
+        buttonForgot = (Button)findViewById(R.id.B3);
+
+
+        buttonLogin.setOnClickListener(this);
+        B2.setOnClickListener(this);
+        buttonForgot.setOnClickListener(this);
+
+
         mAuth = FirebaseAuth.getInstance();
+
 
         
 
@@ -68,26 +83,16 @@ public class Login extends Activity implements View.OnClickListener {
             mAuth.removeAuthStateListener(mAuthListener);
         }
 
-//Linking objects to UI
 
-        editTextuser = (EditText) findViewById(R.id.editTextuser);
-        editTextpassword = (EditText)findViewById(R.id.editTextpassword);
-        buttonLogin = (Button)findViewById(R.id.B1);
-        B2 =(Button)findViewById(R.id.B2);
-        buttonForgot = (Button)findViewById(R.id.B3);
-
-
-        buttonLogin.setOnClickListener(this);
-        B2.setOnClickListener(this);
-        buttonForgot.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View view) {
 
         if (view.getId()==R.id.B2){
-            Intent intentLogin = new Intent (Login.this, Registration.class);
+            Intent intentLogin = new Intent (Login.this, CareerFunctions.class);
             startActivity(intentLogin);
+
 
     }}
 
@@ -139,7 +144,7 @@ public class Login extends Activity implements View.OnClickListener {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        Intent intentMonitor = new Intent(Login.this, CareerFunctions.class);
+        Intent intentMonitor = new Intent(Login.this, Registration.class);
 
         if (mAuth.getCurrentUser() != null ) {
             if (item.getItemId() == R.id.menuLogout) {
@@ -149,11 +154,7 @@ public class Login extends Activity implements View.OnClickListener {
                 Toast.makeText(this, "You're There!", Toast.LENGTH_SHORT).show();
 
             }
-        } else {
-            Toast.makeText(this, "Please Login", Toast.LENGTH_SHORT).show();
         }
-
-
         return super.onOptionsItemSelected(item);
     }
 

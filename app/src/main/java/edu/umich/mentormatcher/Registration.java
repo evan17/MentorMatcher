@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,12 +20,17 @@ import android.widget.AdapterView.OnItemSelectedListener;
 import android.widget.Toast;
 
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
+
+import static android.content.ContentValues.TAG;
 
 //This registration page is coded to write to the User node of the database
 
@@ -53,6 +59,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         editTextName = (EditText) findViewById(R.id.editTextName);
         ConfirmAspiration = (Spinner) findViewById(R.id.ConfirmAspiration);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
+        editTextPassword = (EditText) findViewById(R.id.editTextPassword);
 
 
         buttonC.setOnClickListener(this);
@@ -76,8 +83,7 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
             }
         };
 
-
-        //Creating list of items in the spinner
+        // Spinner Drop down elements
         List<String> categories = new ArrayList<String>();
         categories.add("Consulting");
         categories.add("Finance");
@@ -85,20 +91,16 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         categories.add("Marketing");
         categories.add("Product Management");
 
+        // Creating adapter for spinner
+        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
 
-        //Creating adapter for spinner
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, categories);
+        // Drop down layout style - list view with radio button
+        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        //Drop down layout style
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        //attaching data adapter to spinner
-        ConfirmAspiration.setAdapter(adapter);
+        // attaching data adapter to spinner
+        ConfirmAspiration.setAdapter(dataAdapter);
 
 
-        //Code that gets the selected text from the selected item
-
-        String selectedText = (String) ConfirmAspiration.getSelectedItem();
 
     }
 //End of On Create!
@@ -117,50 +119,62 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
         }
     }
 
-    private void findViewById(Button buttonC) {
-    }
-
     public void onClick (View view) {
-/*
-        String name = editTextName.getText().toString();
-        String email = mAuth.getCurrentUser().getEmail();
-        User user= new User (email,  );
+
+        //Code that gets the selected text from the selected item
+
+        String selectedText = (String) ConfirmAspiration.getSelectedItem();
+
+        // add conditional in case user alrady has an account
+       /*String name = editTextName.getText().toString();
+        String email = editTextEmail.getText().toString();
+        String password = editTextPassword.getText().toString();
+        String career = ConfirmAspiration.getItemAtPosition().toString();
+        this.createAccount(email,password);
+
+        User user= new User (email,password,name,career);
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference dataUser = database.getReference("Users");
 
         DatabaseReference dataNewUser = dataUser.push();
-        dataNewUser.setValue(user);*/
+        dataNewUser.setValue(user);
 
         //Also this page does not capture two more elements of the User class which are name and uid
 
         if (view == buttonC){
                     Intent intentLogin = new Intent (Registration.this, Login.class);
                     startActivity(intentLogin);
-        }
+        }*/
 
     }
 
+    public void createAccount(String email, String password) {
+        mAuth.createUserWithEmailAndPassword(email, password)
+                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        Log.d(TAG, "createUserWithEmail:onComplete:" + task.isSuccessful());
+
+                        if (!task.isSuccessful()) {
+                            Toast.makeText(Registration.this, "Authentication failed.",
+                                    Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+    }
+
     @Override
-    public void onItemSelected (AdapterView <?> parent, View v, int position,
-                                long id) {
-        String careerAspiration = parent.getItemAtPosition(1).toString();
-
-        /*User user= new User (careerAspiration);
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference dataUser = database.getReference("Users");
-
-        DatabaseReference dataNewUser = dataUser.push();
-        dataNewUser.setValue(user); */
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        // On selecting a spinner item
+        String item = parent.getItemAtPosition(position).toString();
 
         // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "Selected: " + careerAspiration, Toast.LENGTH_SHORT).show();
-
+        Toast.makeText(parent.getContext(), "Selected: " + item, Toast.LENGTH_LONG).show();
+    }
+    public void onNothingSelected(AdapterView<?> arg0) {
+        // TODO Auto-generated method stub
     }
 
-    @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-        Toast.makeText(Registration.this, "Nothing Selected", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -182,6 +196,8 @@ public class Registration extends Activity implements View.OnClickListener, OnIt
 
         return super.onOptionsItemSelected(item);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

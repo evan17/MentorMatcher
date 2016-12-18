@@ -55,11 +55,11 @@ public class CareerFunctions extends Activity implements View.OnClickListener {
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if (user != null) {
                     Toast.makeText(CareerFunctions.this, "User signed in: " + user.getEmail(), Toast.LENGTH_SHORT).show();
-                } else {
+                } /*else {
                     Toast.makeText(CareerFunctions.this, "Please Login", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(CareerFunctions.this, CareerFunctions.class);
                     startActivity(intent);
-                }
+                }*/
             }
         };
 
