@@ -41,7 +41,6 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
     private Button buttonUpdateAvailability;
     private TextView textName;
     private TextView textPosition;
-    private TextView textServices;
     private TextView textAbout;
     private TextView textReviews;
 
@@ -58,7 +57,6 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
         buttonUpdateAvailability = (Button) findViewById(R.id.buttonUpdateAvailability);
         textName = (TextView) findViewById(R.id.textName);
         textPosition = (TextView) findViewById(R.id.textPosition);
-        textServices = (TextView) findViewById(R.id.textServices);
         textAbout = (TextView) findViewById(R.id.textAbout);
         textReviews = (TextView) findViewById(R.id.textReviews);
 
@@ -70,7 +68,6 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
         // Update text
         textName.setText("Panpan in the house");
         textPosition.setText("Amazon Ruler");
-        textServices.setText("E/'erthang");
         textAbout.setText("I now like tea mor than coffee / java");
         textReviews.setText("Stellar");
 
@@ -97,17 +94,32 @@ public class ProfileManagement extends Activity implements View.OnClickListener{
         switch (v.getId()) {
             case R.id.buttonUpdateProfile:
                 // Go to update proile screen - code forthcoming
-                // Intent intent = new Intent(this, UserActivityManagementScreen.class);
-                //startActivity(intent);
+                Intent intent = new Intent(this, Registration.class);
+                startActivity(intent);
                 break;
             case R.id.buttonUpdateAvailability:
                 // Go to update availability (calendar) screen - code forthcoming
-
+                Intent intent2 = new Intent(this, MentorCalendarUpdate.class);
+                startActivity(intent2);
                 break;
 
         }
 
 
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        mAuth.addAuthStateListener(mAuthListener);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (mAuthListener != null) {
+            mAuth.removeAuthStateListener(mAuthListener);
+        }
     }
 
     @Override

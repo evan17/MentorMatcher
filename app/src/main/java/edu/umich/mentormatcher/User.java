@@ -31,7 +31,7 @@ public class User {
         // Disable public use of default constructor
     }
 
-    public User(String email, String password, String name, String careerAspiration) {
+    public User(String email, String password,  String name, String careerAspiration) {
         this.email = email;
         this.password = password;
         this.name = name;
@@ -39,6 +39,10 @@ public class User {
 
         this.uid = generateNewUid();
         this.isMentor = false;
+
+        this.title = "";
+        this.aboutMe = "";
+        this.reward = "";
     }
 
     private long generateNewUid() {

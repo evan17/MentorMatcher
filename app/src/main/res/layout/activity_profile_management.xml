@@ -30,25 +30,20 @@
             android:weightSum="1">
 
             <Button
-                android:text="Back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonBack"
-                android:layout_weight="0.71" />
-
-            <Button
                 android:text="Update Profile"
                 android:layout_width="117dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonUpdateProfile"
-                android:textSize="12sp" />
+                android:textSize="14sp"
+                android:layout_weight="0.54" />
 
             <Button
                 android:text="Update Availability"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonUpdateAvailability"
-                android:textSize="12sp" />
+                android:textSize="14sp"
+                android:layout_weight="0.37" />
 
         </LinearLayout>
 
@@ -81,37 +76,6 @@
                     android:layout_weight="1"
                     android:textSize="18sp"
                     android:textAlignment="center" />
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_weight="0.14">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07">
-
-                <TextView
-                    android:text="Services"
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:id="@+id/textView11"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:text="Service Description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textServices"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
             </LinearLayout>
 
         </LinearLayout>

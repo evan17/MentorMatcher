@@ -26,19 +26,12 @@
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_weight="0.14"
+            android:layout_weight="0.04"
             android:weightSum="1">
 
             <Button
-                android:text="Back"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/buttonBack"
-                android:layout_weight="0.04" />
-
-            <Button
                 android:text="Check Availability"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/buttonCheckAvailability" />
 
@@ -66,7 +59,7 @@
                     android:textAlignment="center" />
 
                 <TextView
-                    android:text="Position"
+                    android:text="Career Function"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textPosition"
@@ -80,31 +73,7 @@
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="44dp"
-            android:layout_weight="0.14">
-
-            <LinearLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="0.07">
-
-                <TextView
-                    android:text="Services"
-                    android:layout_width="match_parent"
-                    android:layout_height="34dp"
-                    android:id="@+id/textView11"
-                    android:textSize="18sp"
-                    android:textAlignment="center" />
-
-                <TextView
-                    android:text="Service List"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:id="@+id/textServices"
-                    android:textAlignment="center"
-                    android:textSize="18sp" />
-            </LinearLayout>
+            android:layout_height="32dp">
 
         </LinearLayout>
 
@@ -154,7 +123,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/textView12"
-                    android:layout_weight="0.22"
+                    android:layout_weight="0.26"
                     android:textSize="18sp"
                     android:textAlignment="center" />
 

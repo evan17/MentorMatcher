@@ -10,6 +10,8 @@ package edu.umich.mentormatcher;
 // Finish navigation
 // Figure out how to get the aggregated rating
 // Utility class to potentially replace screen by screen queries
+// Add textview that shows the last 5 comments
+
 
 //Complete:
 // Menu added
