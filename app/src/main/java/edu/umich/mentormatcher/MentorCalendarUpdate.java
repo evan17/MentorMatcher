@@ -12,6 +12,7 @@ import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.icu.util.Calendar;
+import android.icu.util.GregorianCalendar;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -29,6 +30,11 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import static edu.umich.mentormatcher.R.id.textViewEndTime;
 
@@ -128,9 +134,9 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
                      view.updateDate(mYear, month, dayOfMonth);
                  }
                 month=month+1;
-                textViewSetdate.setText(month+"-"+dayOfMonth+"-"+year);
+                textViewSetdate.setText(year+"-"+month+"-"+dayOfMonth);
             }
-        },mDay,mMonth,mYear);
+        },mYear,mMonth,mDay);
 
         datePickerDialog.show();
 
@@ -175,12 +181,52 @@ public class MentorCalendarUpdate extends Activity implements View.OnClickListen
                 DatabaseReference ref = database.getReference("slots");
 
                 String start=textViewSettime.getText().toString();
+                String []startpart=start.split(":");
+                String StartHour=startpart[0];
+                String StartMinute=startpart[1];
+               int hourstart=Integer.parseInt(StartHour);
+               int minutestart=Integer.parseInt(StartMinute);
+
                 String end= textViewEndTime.getText().toString();
+                String []endpart=end.split(":");
+                String EndHour=endpart[0];
+                String EndMinute=endpart[1];
+
+              int hourend=Integer.parseInt(EndHour);
+              int minutend=Integer.parseInt(EndMinute);
+
                 String date=textViewSetdate.getText().toString();
+                String [] datepart=date.split("-");
+                String Year=datepart[0];
+                String Month=datepart[1];
+                String Day=datepart[2];
+                int Yearinput=Integer.parseInt(Year);
+                int Monthinput=Integer.parseInt(Month);
+                int Dayinput=Integer.parseInt(Day);
+
+                Date Startdate = new Date(Yearinput,Monthinput,Dayinput,hourstart,minutestart,0);
+                Date Enddate = new Date(Yearinput,Monthinput,Dayinput,hourend,minutend,0);
                 String service=editTextService.getText().toString();
-                Slot slot = new Slot(start,end,date,1481250845829L,service);
+                Slot slot = new Slot(Startdate,Enddate,1481250845829L,service);
                 DatabaseReference newSlotRef = ref.child("1481250845829").push();
                 newSlotRef.setValue(slot);
+              /*  String startdate=date+" "+start;
+                String enddate=date+" "+end;
+                DateFormat df= new SimpleDateFormat("yyyy-mm-dd HH:mm a");
+                try {
+                    Date slotdatestart=df.parse(startdate);
+                    Date slotdateend=df.parse(enddate);
+
+                    String service=editTextService.getText().toString();
+                    Slot slot = new Slot(slotdatestart,slotdateend,1481250845829L,service);
+                    DatabaseReference newSlotRef = ref.child("1481250845829").push();
+                    newSlotRef.setValue(slot);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }*/
+
+
+
             }
         }
     }

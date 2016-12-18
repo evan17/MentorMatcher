@@ -45,13 +45,13 @@ public class TestActivity extends Activity implements View.OnClickListener{
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference ref = database.getReference("slots");
 
-        String start = "3:00pm";
-        String end = "4:00pm";
-        String date="12-15-2016";
+        //String start = "3:00pm";
+       // String end = "4:00pm";
+       // String date="12-15-2016";
 
-        Slot slot = new Slot(start,end,date,1481740845829L,"consulting");
-        DatabaseReference newSlotRef = ref.child("1481740845829").push();
-        newSlotRef.setValue(slot);
+        //Slot slot = new Slot(start,end,date,1481740845829L,"consulting");
+       // DatabaseReference newSlotRef = ref.child("1481740845829").push();
+       // newSlotRef.setValue(slot);
 
         Toast.makeText(TestActivity.this, "Slot add successfully", Toast.LENGTH_SHORT).show();
     }

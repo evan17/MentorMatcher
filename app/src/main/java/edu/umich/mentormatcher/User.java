@@ -56,6 +56,11 @@ public class User {
     public String getCareerAspiration() {
         return careerAspiration;
     }
+//Set Methods for Career Aspiration
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
 
     /*

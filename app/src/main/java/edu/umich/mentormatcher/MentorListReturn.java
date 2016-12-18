@@ -13,7 +13,9 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,18 +27,23 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+
 public class MentorListReturn extends Activity {
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
     private TextView Test;
+    private ListView LV;
+    ArrayList<String> names =new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mentor_list_return);
 
-         Test=(TextView)findViewById(R.id.textViewTest);
+        Test=(TextView)findViewById(R.id.textViewTest);
+        LV=(ListView)findViewById(R.id.ListViewMentor);
 
         // Firebase Auth implementation
         mAuth = FirebaseAuth.getInstance();
@@ -58,15 +65,16 @@ public class MentorListReturn extends Activity {
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference();
 
-        myRef.child("users").orderByChild("careerAspiration").equalTo(Util.funtions).addChildEventListener(
+        myRef.child("users").orderByChild("careerAspiration").equalTo("consulting").addChildEventListener(
                 new ChildEventListener() {
                     @Override
                     public void onChildAdded(DataSnapshot dataSnapshot, String s) {
 
-                        User userlist=dataSnapshot.getValue(User.class);
-                        String val=Test.getText().toString();
-                        val=userlist.name;
-                        Test.setText(val);
+                        //User userlist=dataSnapshot.getValue(User.class);
+                       //String val=Test.getText().toString();
+                      //  val=userlist.name;
+                      // Test.setText(val);
+                       getUpdate(dataSnapshot);
                     }
 
                     @Override
@@ -123,5 +131,22 @@ public class MentorListReturn extends Activity {
         return super.onCreateOptionsMenu(menu);
 
     }
+
+    private void getUpdate(DataSnapshot ds){
+
+        //names.clear();
+        for(DataSnapshot data:ds.getChildren())
+        {
+            User mentor=new User();
+            mentor.setName(data.getValue(User.class).getName());
+            names.add(mentor.getName());
+           Toast.makeText(this, mentor.name, Toast.LENGTH_SHORT).show();
+        }
+
+            ArrayAdapter adapter=new ArrayAdapter(MentorListReturn.this,android.R.layout.simple_list_item_1,names);
+            LV.setAdapter(adapter);
+
+    }
+
 
 }
